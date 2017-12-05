@@ -17,3 +17,17 @@ def get_player_statistics_for_map(match_id, map_id):
 #%%
 def get_team_by_id(team_id):
     return df_teams.loc[df_teams['ID'] == team_id]
+
+#%%
+def clean_matches_dataset():
+    df = pd.DataFrame()
+    df['match_id'] = df_matches['Match ID'].head(10)
+    df['map'] = df_matches['Map'].head(10)
+    df['team_1_id'] = df_matches['Team 1 ID'].head(10)
+    df['team_2_id'] = df_matches['Team 2 ID'].head(10)
+    df['team_1_score'] = df_matches['Team 1 Half 1 Score'] + df_matches['Team 1 Half 2 Score'] + df_matches['Team 1 Overtime Score'].head(10)
+    df['team_2_score'] = df_matches['Team 2 Half 1 Score'] + df_matches['Team 2 Half 2 Score'] + df_matches['Team 2 Overtime Score'].head(10)
+    return df
+
+#%%
+clean_matches_dataset()
